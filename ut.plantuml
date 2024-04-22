@@ -1,0 +1,48 @@
+@startuml
+class Entrenador {
+  - nombre: String
+  - ubicacionActual: Ubicacion
+  - pokemonCapturados: List<Pokemon>
+  + moverse(direccion: Direccion)
+  + capturarPokemon(pokemon: Pokemon)
+  + entrenarPokemon(pokemon: Pokemon)
+  + combatir(entrenadorRival: Entrenador)
+}
+
+class Pokemon {
+  - nombre: String
+  - tipo: TipoPokemon
+  - nivel: int
+  + atacar(pokemonObjetivo: Pokemon)
+  + evolucionar()
+}
+
+class TipoPokemon {
+  FUEGO
+  AGUA
+  PLANTA
+  ELÉCTRICO
+  TIERRA
+  VOLADOR
+  PSÍQUICO
+  NORMAL
+}
+
+class Direccion {
+  ARRIBA
+  ABAJO
+  IZQUIERDA
+  DERECHA
+}
+class Evolucion {
+    Lv()
+    Piedra()
+    Otras()
+
+}
+
+Entrenador  --* Pokemon : tiene
+Pokemon  --o  Evolucion : puede evolucionar
+Pokemon ---> TipoPokemon : es de tipo
+Entrenador --> Direccion : puede moverse
+@enduml
