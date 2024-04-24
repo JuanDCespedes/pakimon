@@ -2,10 +2,13 @@
 class Entrenador {
   - nombre: String
   - pokemonCapturados: List<Pokemon>
+  - pokemonActivo: Pokemon
   + moverse(direccion: Direccion)
-  + capturarPokemon(pokemon: Pokemon)
+  + capturarPokemon(pokemon: Pokemon, pokeball: PokeBall): boolean
   + entrenarPokemon(pokemon: Pokemon)
   + combatir(entrenadorRival: Entrenador)
+  + cambiarPokemonActivo(nuevoPokemon: Pokemon): boolean
+  + verificarEstado(): boolean
 }
 
 class Pokemon {
@@ -14,6 +17,9 @@ class Pokemon {
   - nivel: int
   + atacar(pokemonObjetivo: Pokemon)
   + evolucionar()
+  + esquivarMovimiento(): boolean
+  + fallarAtaque(): boolean
+  + recibirDaño(daño: int): boolean
 }
 
 class TipoPokemon {
@@ -46,10 +52,33 @@ class MecanicasDeCombate {
   + no surtio efecto(atacante: TipoPokemon, defensor: TipoPokemon): boolean
 }
 
+class PokeBall {
+  - nombre: String
+  - ratioCaptura: double
+}
+
+class Dibujar {
+  - mapa: Matriz de caracteres
+  - jugador: Posición del jugador
+  - npcs: Lista de posiciones de NPCs
+  - pokemons: Lista de posiciones de Pokémon
+  - fondo: Imagen de fondo del mapa
+
+  + __init__(fondo: Imagen)
+  + agregar_jugador(posicion: (x, y))
+  + agregar_npc(posicion: (x, y))
+  + agregar_pokemon(posicion: (x, y))
+  + dibujar_mapa()
+}
+
 Entrenador  --* Pokemon : tiene
 Pokemon  --o  Evolucion : puede evolucionar
 Pokemon ---> TipoPokemon : es de tipo
 Entrenador --> Direccion : puede moverse
 Pokemon --> MecanicasDeCombate : utiliza
 TipoPokemon --> MecanicasDeCombate : afecta
+Entrenador --> PokeBall : utiliza
+Entrenador --|> Dibujar
+Pokemon --|> Dibujar
+PokeBall --|> Dibujar
 @enduml
