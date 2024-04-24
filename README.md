@@ -2,4 +2,4 @@
 - David Muñoz 20232020281
 - Juan David Avila 20232020154
 
-![Diagrama de pokemon](out/ut/pokemon.png)
+![Diagrama de pokempn](out/pokemon/pokemon.png)  
