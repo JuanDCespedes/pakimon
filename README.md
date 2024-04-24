@@ -1,4 +1,4 @@
 - Juan Diego Céspedes Uribe 20232020148
 - David Muñoz 20232020281
 - Juan David Avila 20232020154
-![Diagrama de pokemon](pokemon.png)
+![Diagrama de pokemon](out/ut/pokemon.png)
