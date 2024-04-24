@@ -1,7 +1,6 @@
 @startuml
 class Entrenador {
   - nombre: String
-  - ubicacionActual: Ubicacion
   - pokemonCapturados: List<Pokemon>
   + moverse(direccion: Direccion)
   + capturarPokemon(pokemon: Pokemon)
@@ -18,31 +17,39 @@ class Pokemon {
 }
 
 class TipoPokemon {
-  FUEGO
-  AGUA
-  PLANTA
-  ELÉCTRICO
-  TIERRA
-  VOLADOR
-  PSÍQUICO
-  NORMAL
+  + FUEGO
+  + AGUA
+  + PLANTA
+  + ELÉCTRICO
+  + TIERRA
+  + VOLADOR
+  + PSÍQUICO
+  + NORMAL
 }
 
 class Direccion {
-  ARRIBA
-  ABAJO
-  IZQUIERDA
-  DERECHA
+  - ARRIBA
+  - ABAJO
+  - IZQUIERDA
+  - DERECHA
 }
-class Evolucion {
-    Lv()
-    Piedra()
-    Otras()
 
+class Evolucion {
+  - Lv()
+  - Piedra()
+  - Otras()
+}
+
+class MecanicasDeCombate {
+  + es Super Efectivo(atacante: TipoPokemon, defensor: TipoPokemon): boolean
+  + es Poco Efectivo(atacante: TipoPokemon, defensor: TipoPokemon): boolean
+  + no surtio efecto(atacante: TipoPokemon, defensor: TipoPokemon): boolean
 }
 
 Entrenador  --* Pokemon : tiene
 Pokemon  --o  Evolucion : puede evolucionar
 Pokemon ---> TipoPokemon : es de tipo
 Entrenador --> Direccion : puede moverse
+Pokemon --> MecanicasDeCombate : utiliza
+TipoPokemon --> MecanicasDeCombate : afecta
 @enduml
